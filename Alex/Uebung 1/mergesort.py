@@ -40,7 +40,12 @@ def merge_sort(nums: list[int], k: int):
     rslt = []
     
     # merge
-    #
+    
+    # if "pointer" is less then length of current block (block_end - block_start)
+    # If any element is left in it's corresponding block then
+    # we will get True and the while loop will continue
+    # We will finish when all "pointers" will reach the end
+    # of correspondig blocks
     while any(ptrs[j] < (blocks[1] - blocks[0]) for j, blocks in enumerate(sub_lists_indexes)):
      
         min_value = float("inf")
