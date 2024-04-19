@@ -1,0 +1,10 @@
+Bei einem Wert von k = n/4 arbeitet der Algorithmus am langsamsten, 
+da die Anzahl der Teilungen des ursprünglichen Arrays zu groß wird. 
+
+Aus dem Diagramm können wir auch schließen, 
+dass der Algorithmus bei k = log_2(n) zeitlich am effizientesten arbeitet.
+
+Ich habe etwa 5-6 Stunden gebraucht, um die erste Aufgabe zu lösen. 
+Dabei habe ich sowohl das Vorlesungsmaterial 
+als auch einige Literatur zum genaueren Verständnis 
+des Sortieralgorithmus aktiv genutzt.

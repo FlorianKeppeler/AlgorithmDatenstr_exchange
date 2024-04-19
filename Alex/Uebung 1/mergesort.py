@@ -3,7 +3,6 @@ import math
 import time
 
 import matplotlib.pyplot as plt
-from pprint import pprint
 
 plt.style.use("ggplot")
 
@@ -54,7 +53,8 @@ def merge_sort(nums: list[int], k: int):
     # We will finish when all "pointers" will reach the end
     # of correspondig blocks
     while any(
-        ptrs[j] < (blocks[1] - blocks[0]) for j, blocks in enumerate(sub_lists_indexes)
+        ptrs[j] < (blocks[1] - blocks[0])
+        for j, blocks in enumerate(sub_lists_indexes)
     ):
         min_value = float("inf")
         min_idx = -1
@@ -76,7 +76,9 @@ def merge_sort(nums: list[int], k: int):
 
 
 # Implementation of a recursive merge sort from lecture notes
-def merge_sort_recursive(nums: list[int], start: int, end: int, tmp: list[int]):
+def merge_sort_recursive(
+        nums: list[int], start: int, end: int, tmp: list[int]
+        ):
     if end - start > 1:
         middle = (start + end) // 2
         merge_sort_recursive(nums, start, middle, tmp)
@@ -111,7 +113,10 @@ def measure_merge_sort(
     for measure_point in measure_points:
         time_deltas = dict()
         for list_length in range(start, iterations + step, step):
-            random_list = [random.randint(-10_000, 10_000) for _ in range(list_length)]
+            random_list = [
+                random.randint(-10_000, 10_000)
+                for _ in range(list_length)
+                ]
 
             match measure_point:
                 case int():
@@ -126,10 +131,6 @@ def measure_merge_sort(
                     delta = time.time() - time_start
                     time_deltas[list_length] = delta
 
-            print(
-                f"List length: {list_length}\nMeasure point: {measure_point}\nTime: {delta}\n"
-            )
-
         if isinstance(measure_point, tuple):
             time_dict[measure_point[0]] = time_deltas
         else:
@@ -139,7 +140,8 @@ def measure_merge_sort(
 
 def plot_measurements(measurements: dict) -> None:
     for k, coords in measurements.items():
-        sorted_by_list_legth = sorted(coords.items())  # sort by key (key = list length)
+        # sort by key (key = list length)
+        sorted_by_list_legth = sorted(coords.items())
         x, y = zip(*sorted_by_list_legth)
 
         plt.plot(x, y, label=k)
@@ -163,19 +165,7 @@ def main():
     ]
 
     measurements = measure_merge_sort(iterations, start, step, ks)
-
     plot_measurements(measurements)
-
-    # n = 1000
-    # k_limit = 20
-    # for k in range(2, k_limit):
-    #     arr = [random.randint(0, 10000) for _ in range(n)]
-    #     sorted_arr = merge_sort(arr, k)
-
-    #     if not sorted_arr == sorted(arr):
-    #         raise Exception("Didn't Sort Correctly!")
-
-    # print("seems to work")
 
 
 if __name__ == "__main__":
