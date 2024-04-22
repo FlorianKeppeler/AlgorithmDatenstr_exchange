@@ -3,29 +3,38 @@ import random
 
 def merge_sort(arr: list[int], k: int) -> list[int]:
 
+    if len(arr) == 0:
+        raise ValueError("list is empty")
+
+    if len(arr) < k:
+        raise ValueError("k must be >= than list")
+
+    # divide arr in k equal parts
     start = 0
     end = len(arr)
 
-    k_index = int(start + (end - start) / k)
-
-    start = 0
+    k_index = int(start + (end - start) / k)  # how many elements per part?
 
     tmp_arr = []
     tmp_end = 0
 
+    # for each iteration elements get stored in k parts. Remaining elements will be stored in one additional partition
     while tmp_end < len(arr):
 
         tmp_end = start + k_index
         tmp_arr += [arr[start:tmp_end]]
         start = tmp_end
 
+    # as long as elements of parts are > k merge_sort will be run recursively
     for x in tmp_arr:
         if len(x) > 1:
             if len(x) >= k:
                 merge_sort(x, k)
             else:
-                merge_sort(x, len(x) % k)
+                merge_sort(x, len(x) % k)  # if length of x is < than k, k will be adjusted in order to end up with only 1 element per part in the end of recursion
 
+
+    # after division parts will be merged again while getting sorted
     for j in range(len(arr)):
 
         if len(tmp_arr) != 1:
