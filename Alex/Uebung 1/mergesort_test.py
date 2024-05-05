@@ -1,7 +1,7 @@
 import unittest
 import random
 
-from MergeSort import merge_sort
+from mergeSort import merge_sort
 
 
 class MergeSortTest(unittest.TestCase):
