@@ -38,12 +38,12 @@ def radix_sort(array: list, k: int) -> None:
 
     # base and amount of digits
     b = 10
-    m = math.floor(math.log(k, b))
+    m = math.ceil(math.log(k, b))
 
     # apply bucket sort with modified key function
     # to sort by digit
-    for i in range(m + 1):
-        bucket_sort(array, k, lambda number: (number // (b**i)) % b)
+    for i in range(m):
+        bucket_sort(array, b, lambda number: number % 10 ** (i + 1) // 10**i)
 
 
 def is_sorted(lst):
@@ -67,6 +67,8 @@ def radix_sort_performance(
 
     points = dict()
 
+    print(f"\nRADIX SORT\n")
+
     for k in range(k_values_start, k_values_end, k_values_step):
         array = [random.randint(0, k) for _ in range(array_size)]
 
@@ -75,7 +77,12 @@ def radix_sort_performance(
         run_time = time.time() - start_time
 
         is_srtd = is_sorted(array)
-        print(f"size: {k} | time: {run_time} | {is_srtd=}")
+        print(
+            f"|     time: {run_time:<25}",
+            f"|     k: {k:<10}",
+            f"|     {is_srtd=}      |",
+        )
+
         points[k] = run_time
 
     return points

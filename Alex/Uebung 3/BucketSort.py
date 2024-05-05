@@ -65,7 +65,7 @@ def bucket_sort_performance(
     """
 
     points = dict()
-
+    print(f"\nBUCKET SORT\n")
     for k in range(k_values_start, k_values_end, k_values_step):
         array = [random.randint(0, k) for _ in range(array_size)]
 
@@ -74,7 +74,12 @@ def bucket_sort_performance(
         run_time = time.time() - start_time
 
         is_srtd = is_sorted(array)
-        print(f"size: {k} | time: {run_time} | {is_srtd=}")
+
+        print(
+            f"|     time: {run_time:<25}",
+            f"|     k: {k:<10}",
+            f"|     {is_srtd=}      |",
+        )
 
         points[k] = run_time
 
