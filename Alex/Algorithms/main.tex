@@ -23,6 +23,7 @@
 \usepackage[protrusion=true,expansion=true, kerning]{microtype} % Sieht damit einfach schöner aus
 \usepackage{mathtools}
 
+\raggedbottom
 % nur für das Beispiel benötigt
 \usepackage{lipsum}
 
@@ -45,7 +46,6 @@
 \begin{document}
 
 \section*{General concepts}
-
 Algorithm is considered to be correct if:
 
 \begin{enumerate}
@@ -53,9 +53,29 @@ Algorithm is considered to be correct if:
     \item Algorithm is terminating
 \end{enumerate}
 
+\subsection*{Landau Symbols}
+
+Some important notation:
+\begin{enumerate}[(a)]
+    \item $\mathbb{O}(n) := \{f(n) \;|\; \exists c, n_0 > 0 \; \forall n \geq n_0 \; : \; f(n) \leq c \cdot g(n)\}$
+    \begin{itemize}
+        \item \textbf{Means:} $f(n) \in \mathbb{O}(n)$ if there are constants $c$ and $n_0$ such that $f(n) \leq c \cdot g(n) \; \forall n \geq n_0$.
+        \item \textbf{In simple terms:} $f(n) \leq g(n)$, asymptotically seen. $f(n)$ grows slower then $g(n)$.
+    \end{itemize}
+
+    \item $\Omega(n) := \{f(n) \; | \; \exists c, n_0 > 0 \; \forall n \geq n_0 \; : \; f(n) \geq c \cdot g(n)\}$ \\
+     Means: Function $f(n) \in \Omega(n)$ if there exists constants $c$ and $n_0$ such that $f(n) \geq c \cdot g(n) \; \forall n \geq n_0$.
+    
+
+
+     
+\end{enumerate}
 %------------------------------------------------------------------------------------------------------------------------------------------------
 \section*{Sorting algorithms}
-
+    Some notation:
+    \begin{itemize}
+        \item Input array - $A$
+    \end{itemize}
     \subsection*{Selection Sort}
 
     Key ideas of the algorithm: 
@@ -105,19 +125,86 @@ Algorithm is considered to be correct if:
         \label{fig:enter-label}
     \end{figure}
 
+    \clearpage
+    \subsection*{Quick Sort}
 
+    Key idea:
+    \begin{itemize}
+        \item Divide array into two parts: \textbf{left} part with \textbf{smaller} elements, \textbf{right} part with bigger \textbf{elements}.
+        \item Sort parts recursively
+    \end{itemize}
+    It's important to note, that it's unnecessary to create a new array for this, because it can be done in place with two variables (l and r):
     
+    \begin{enumerate}
+        \item Choose a pivot $x \in A$ and create two variables: $l = 0$ and $r = len(A) - 1$.
+        \item Increment l until $A[l] > x$ (element should go to the right side)
+        \item Decrement r until $A[l] <= x$ (element should go to the left side)
+        \item Swap elements and do l += 1  and r -= 1 (move l to the left and r to the right)
+        \item As soon as l == r stop
+    \end{enumerate}
+    Some information about the pivot element selection:
+    \begin{enumerate}
+        \item Size of both right and left sides depends on the pivot value.
+        \item The smaller len(left) - left(right) the better the performance.
+        \item Ideal (theor.) candidate for the pivot element is median (middle value in the sorted array), however it's not easy (read: time efficient?) to find it
+        \item Some fixed element of the array is a bad choice, because it can lead to bad size of the parts
+        \item Other possible candidates: median of three (or more) elements or random element in array \\
+    \end{enumerate}
+
+    One can see QuickSort as follows (Simplified):
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\linewidth]{quick_sort_simplyfied.png}
+        \caption{Simplified representation of QS}
+        \label{fig:enter-label}
+    \end{figure}
+    
+    (I guees more info on QS later?)
 
 
-
-
-
-
-
-
-
-
-
-
+    \clearpage
+    \subsection*{Merge Sort}
+    
+    Key ideas:
+    
+    \begin{itemize}
+        \item Based on Divide and Conquer principle.
+        \item Consists of 3 main parts:
+        \begin{itemize}
+            \item \textbf{Divide}. Computes the middle of the subarray, which takes $\mathbb{O}(1)$.
+            \item \textbf{Conquer}. Recursively solving 2 subproblems, each of size $\frac{n}{2}$, contributes $2T(\frac{n}{2})$ to the running time.
+            \item \textbf{Combine}. Merge two subarrays. Takes $\mathbb{O}(1)$.
+        \end{itemize}
+        \item Recursive equation (proof in Cormen book pgs. 41 - 43):
+        \begin{align*}
+            T(n) = 2T\left(\frac{n}{2}\right) + \mathbb{O}(n)
+        \end{align*}
+        \item Resulting worst-case time complexity: $\mathbb{O}(nlg(n))$
+    \end{itemize}
+    
+    One can think about Merge sort as follows:
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\linewidth]{merge_sort_example_cormen.png}
+        \caption{MS example from Cormen book}
+        \label{fig:enter-label}
+    \end{figure}
+    
+    The heart of the algorithm is the \textit{merge} part. How does it work:
+    
+    \begin{itemize}
+        \item We have two sorted arrays $A$ and $B$.
+        \item Output - sorted array C with elements from A and B.
+        \item Cost of one merge is $\mathbb{O}(n)$.
+    \end{itemize}
+    
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\linewidth]{merge_part_cormen.png}
+            \caption{Merge part from Cormen book}
+            \label{fig:enter-label}
+    \end{figure}    
     
 \end{document}
