@@ -13,7 +13,10 @@ from Queue import Queue  # noqa
 from ListElement import ListElement  # noqa
 
 
-def bucket_sort(array: list[int], k: int, key: Callable[[int], int] = lambda x: x) -> None:
+def bucket_sort(
+        array: list[int],
+        k: int,
+        key: Callable[[int], int] = lambda x: x) -> None:
     '''
     Implements the bucket sort algorithm to sort
         data elements using a key function to
@@ -60,12 +63,18 @@ def bucket_sort_performance():
     '''
     Method that outputs key range and elapsed time for sorting.
     '''
-    for k in range(2*10**4, (12*(10**5))+1, 2*10**4):
+    tmp = dict()
+
+    for k in range(2 * 10**4, (12 * (10**5)) + 1, 2 * 10**4):
         array = [random.randint(0, k) for i in range(10**4)]
         start_time = time.time()
         bucket_sort(array, k)
         run_time = (time.time() - start_time) * 1000
+
+        tmp[k] = run_time
         print("%d\t%.1f" % (k, run_time))
+
+    return tmp
 
 
 def is_sorted(lst, key=lambda x: x):
@@ -77,7 +86,7 @@ def is_sorted(lst, key=lambda x: x):
         Returns:
         bool:    True if the list is sorted, false otherwise.
         """
-    return all(key(lst[i]) <= key(lst[i+1]) for i in range(len(lst)-1))
+    return all(key(lst[i]) <= key(lst[i + 1]) for i in range(len(lst) - 1))
 
 
 if __name__ == "__main__":

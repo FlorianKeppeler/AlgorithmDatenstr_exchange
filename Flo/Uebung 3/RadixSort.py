@@ -13,7 +13,7 @@ import time
 from BucketSort import bucket_sort
 
 
-def radix_sort(array, k):
+def radix_sort(array: list[int], k: int) -> None:
     '''
     Implements the radix sort algorithm to sort
         data elements with keys in range(k+1)
@@ -43,14 +43,16 @@ def is_sorted(lst):
         Returns:
         bool:    True if the list is sorted, false otherwise.
         """
-    return all(lst[i] <= lst[i+1] for i in range(len(lst)-1))
+    return all(lst[i] <= lst[i + 1] for i in range(len(lst) - 1))
 
 
 def radix_sort_performance():
     '''
     Method that outputs key range and elapsed time for sorting.
     '''
-    for k in range(2*10**4, (12*(10**5))+1, 2*10**4):
+    tmp = dict()
+
+    for k in range(2 * 10**4, (12 * (10**5)) + 1, 2 * 10**4):
         array = [random.randint(0, k) for i in range(10**4)]
         start_time = time.time()
         radix_sort(array, k)
@@ -58,6 +60,9 @@ def radix_sort_performance():
         if not is_sorted(array):
             raise Exception("list not sorted successfully")
         print("%d\t%.1f" % (k, run_time))
+        tmp[k] = run_time
+
+    return tmp
 
 
 if __name__ == "__main__":
