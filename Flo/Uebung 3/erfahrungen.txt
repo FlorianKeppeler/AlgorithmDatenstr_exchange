@@ -1,0 +1,7 @@
+Gruppe: fk133, ik176
+
+Dauer: ca. 5 h
+
+Die Umsetzung von BucketSort und RadixSort fiel uns deutlich einfacher als die Implementierung von MergeSort. Wahrscheinlich weil keine Rekursion mit im Spiel war.
+
+Die Interpretation der Laufzeiten in Abhängigkeit von k war etwas tricky, allerdings war nach der Betrachtung der O-Notation klar, dass der BucketSort Algorithmus linear mit k wächst, unabhängig der Länge des Array n. Das gilt nicht für RadixSort, da hier zwar m*T(BucketSort) aufgewendet werden muss, allerdings nur jeweils BucketSort mit k = 10. Dadurch läuft RadixSort in Abhängigkeit von k in nahezu konstanter Laufzeit.

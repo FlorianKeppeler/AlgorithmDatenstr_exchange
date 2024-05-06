@@ -19,7 +19,7 @@ plt.plot(list(radix_res.keys()),
 
 plt.title("Laufzeit BucketSort vs. RadixSort")
 plt.ylabel("Laufzeit [s]")
-plt.xlabel("Länge der Liste")
+plt.xlabel("Größe von k")
 plt.legend()
 
 plt.savefig("Laufzeit.png")

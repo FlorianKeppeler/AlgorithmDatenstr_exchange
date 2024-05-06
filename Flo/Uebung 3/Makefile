@@ -1,4 +1,4 @@
-TEST_CMD = python3.12
+TEST_CMD = python3
 CHECKSTYLE_CMD = flake8
 
 all: compile test checkstyle
