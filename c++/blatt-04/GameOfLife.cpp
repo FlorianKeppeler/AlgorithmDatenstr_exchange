@@ -141,6 +141,7 @@ int numAliveNeighbors(int row, int col) {
   return neighbors;
 }
 
+
 void updateState() {
 
   int alive = 0;
@@ -166,7 +167,14 @@ void updateState() {
       }
     }
   }
+
+  bool *P_tmp = P_Next;
+  P_Next = P_CURRENT;
+  P_CURRENT = P_tmp;
+
+  resetArray(P_Next);
 }
+
 
 bool processUserInput(int keycode) {
 

@@ -38,12 +38,6 @@ int main() {
 
       updateState();
 
-      P_tmp = P_Next;
-      P_Next = P_CURRENT;
-      P_CURRENT = P_tmp;
-
-      resetArray(P_Next);
-
       usleep(50000);
     }
   }

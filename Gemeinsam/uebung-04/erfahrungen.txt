@@ -1,0 +1,5 @@
+Gruppe: fk133, ik176
+
+Dauer: ca. 4h
+
+Die Beschreibung der Hashfunktion in Aufgabe 1 war etwas missverständlich. Aber insgesamt war das Aufgabenblatt machbar.
