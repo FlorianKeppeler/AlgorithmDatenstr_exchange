@@ -1,0 +1,12 @@
+
+Dauer: ca. 3h
+
+n = 10000 und Länge Strings = 100
+
+sortWithCopy: 40.84s  (11.82s; 4.01s mit -O3)
+sortWithMove:  1.38s  ( 0.72s; 0.35s mit -O3)
+
+n = 10000 und Länge Strings = 1
+
+sortWithCopy: 9.73s  (1.70s; 1.15s mit -O3)
+sortWithMove: 1.06s  (0.67s; 0.31s mit -O3)
