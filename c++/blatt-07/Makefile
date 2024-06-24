@@ -2,12 +2,12 @@
 .PHONY: compile test checkstyle clean format all
 .PRECIOUS: %.o
 
-all: checkstyle test clean
+all:  test clean
 
 
 # CXX = clang++-14 -Wall -Wextra -Wdeprecated -fsanitize=address
 # CXX = clang++-14 -Wall -Wextra -Wdeprecated -O3
-CXX = clang++-14 -Wall -Wextra -Wdeprecated
+CXX = clang++ -std=c++14 -Wall -Wextra -Wdeprecated
 
 BASENAME = String
 
@@ -47,5 +47,5 @@ clean:
 	rm -f ./*.o
 
 format:
-	clang-format-14 -i *.cpp
-	clang-format-14 -i *.h
+	clang-format -i *.cpp
+	clang-format -i *.h
